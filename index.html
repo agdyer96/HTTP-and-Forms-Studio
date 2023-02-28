@@ -4,16 +4,39 @@
 	<meta charset="utf-8">
 	<script>
 		// TODO: create a handler
+		function setSearchEngine() {
+			console.log("Running!");
+			const form = document.getElementById("searchForm");
+			let selection = document.querySelector('input[name=engine]:checked').value;
+			console.log(selection);
+			let actions = {
+				google: "https://www.google.com/",
+				duckDuckGo: "https://duckduckgo.com/",
+				bing: "https://www.bing.com/search/",
+				ask: "https://www.ask.com/web/"
+			}
+			let url = actions[selection];
+			form.setAttribute("action", url);
+		}
     window.addEventListener("load", function(){
-        // TODO: register the handler
+		
+			document.addEventListener("submit", function() {
+			setSearchEngine();
+			})	
     });
 	</script>
 </head>
 
 <body>
 
-	<form id="searchForm">
-    <!-- TODO: add form elements -->
+	<form id="searchForm" action="">
+    	<!-- TODO: add form elements -->
+		<input type="text" id="userInput" name="q">
+		<label><input type="radio" value="google" name="engine">Google</label>
+		<label><input type="radio" value="duckDuckGo" name="engine">DuckDuckGo</label>
+		<label><input type="radio" value="bing" name="engine">Bing</label>
+		<label><input type="radio" value="ask" name="engine" >Ask</label>
+		<input type="submit" value="Go!">
 	</form>
 
 </body>
